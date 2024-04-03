@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TraceCollecter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">coverage_collecter</a> &gt; <a href="index.source.html" class="el_package">r_okamot.coverage_collecter</a> &gt; <span class="el_source">TraceCollecter.java</span></div><h1>TraceCollecter.java</h1><pre class="source lang-java linenums">package r_okamot.coverage_collecter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+<span class="nc" id="L11">public class TraceCollecter {</span>
+
+    static public List&lt;String&gt; collect(String reportHtml) {
+<span class="fc" id="L14">        List&lt;String&gt; coverage = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L15">        Document doc = Jsoup.parse(reportHtml);</span>
+<span class="fc" id="L16">        Elements spans = doc.getElementsByTag(&quot;span&quot;);</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        for (Element span : spans) {</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">            if (!isTargetSpan(span))</span>
+<span class="fc" id="L19">                continue;</span>
+<span class="fc" id="L20">            String coveredType = span.attr(&quot;class&quot;);</span>
+<span class="fc" id="L21">            String lineNumber = span.attr(&quot;id&quot;).substring(1);</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">            if (isCovered(coveredType))</span>
+<span class="fc" id="L23">                coverage.add(lineNumber);</span>
+<span class="fc" id="L24">        }</span>
+<span class="fc" id="L25">        return coverage;</span>
+    }
+    
+    static private boolean isTargetSpan(Element span) {
+<span class="pc bpc" id="L29" title="1 of 4 branches missed.">        return span.hasAttr(&quot;class&quot;) &amp;&amp; span.hasAttr(&quot;id&quot;);</span>
+    }
+    
+    static private boolean isCovered(String coveredType) {
+<span class="fc bfc" id="L33" title="All 4 branches covered.">        return coveredType.startsWith(&quot;fc&quot;) || coveredType.startsWith(&quot;pc&quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -12,9 +12,9 @@ public class Coverage {
     public Set<String> keySet() {
         return fileTraceMap.keySet();
     }
-    public List<String> get(String packageName) {
-        if (fileTraceMap.containsKey(packageName))
-            return fileTraceMap.get(packageName);
+    public List<String> get(String fileName) {
+        if (fileTraceMap.containsKey(fileName))
+            return fileTraceMap.get(fileName);
         return new ArrayList<String>();
     }
     
