@@ -11,7 +11,7 @@ public class CoverageCollecterTest {
     
     @Test
     public void testApplyItself() {
-        String reportDir = "jacoco_report_itself";
+        String reportDir = "self_jacoco_report";
         CoverageCollecter collecter = new CoverageCollecter(reportDir);
         Coverage coverage;
         try {
