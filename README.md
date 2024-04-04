@@ -12,11 +12,12 @@
 
 ## 使用
 対象プロジェクトのカバレッジレポートを JaCoCo でとれるようにする必要あり．  
-以下はその前提での使用例．
+以下はその前提での使用法．
 ~~~
-% mvn test -Dtest=XTest#test00 jacoco:report
-% java -jar coverage_collecter.jar XTest#test00 0 target/site/jacoco output_dir
+% java -jar covergae_collecter.jar <test method name> <test result> <jacoco report dir> <output dir>
 ~~~
+ここで ```<test result>``` には ```0```　または ```1``` を指定する．  
+テストの成否を表すもので，```0```は成功，```1```は失敗を意味する．
 
 ### 出力
 ```<output dir>/<specified test method name>.cov``` が出力される．  
